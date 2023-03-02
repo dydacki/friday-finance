@@ -1,0 +1,21 @@
+{
+  "name": "friday-finance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "npm run compile && node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.14.4",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.4.0",
+    "graphql": "^16.6.0"
+  }
+}
