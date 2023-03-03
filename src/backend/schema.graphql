@@ -6,8 +6,8 @@ type Query {
 }
 
 type Mutation {
-  createTransaction(transaction: TransactionRequest!): Transaction!
-  updateTransaction(transaction: Transaction!): Transaction!
+  createTransaction(transaction: TransactionCreateRequest!): Transaction!
+  updateTransaction(transaction: TransactionUpdateRequest!): Transaction!
 }
 
 type Account {
@@ -32,10 +32,20 @@ type Transaction {
   date: String!
 }
 
-type TransactionRequest {
+input TransactionCreateRequest {
   accountId: ID!
   categoryId: ID!
   reference: String
   amount: Float!
   currency: String!
+}
+
+input TransactionUpdateRequest {
+  id: ID!
+  accountId: ID!
+  categoryId: ID!
+  reference: String
+  amount: Float!
+  currency: String!
+  date: String!
 }
