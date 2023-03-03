@@ -1,4 +1,3 @@
-import * as fs  from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { ApolloServer } from '@apollo/server';
@@ -18,6 +17,11 @@ const transactions: Transaction[] = parseFromFile<Transaction>(createSeedPath('t
 
 console.log('Transactions found: ', transactions.length)
 
-// const resolvers: Resolvers = {
-//   Query: 
-// };
+const resolvers: Resolvers = {
+  Query: {
+    getAccounts: () => accounts,
+    getCategories: () => categories,
+    getTransactions: () => transactions,
+    getTransaction: (_, id) => transactions.find(t => t.id === id)
+  },
+};
