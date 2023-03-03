@@ -46,13 +46,10 @@ export type MutationUpdateTransactionArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  getAccount: Account;
   getAccounts?: Maybe<Array<Account>>;
-};
-
-
-export type QueryGetAccountArgs = {
-  accountId: Scalars['String'];
+  getCategories?: Maybe<Array<Category>>;
+  getTransaction?: Maybe<Transaction>;
+  getTransactions?: Maybe<Array<Transaction>>;
 };
 
 export type Transaction = {
@@ -190,8 +187,10 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  getAccount?: Resolver<ResolversTypes['Account'], ParentType, ContextType, RequireFields<QueryGetAccountArgs, 'accountId'>>;
   getAccounts?: Resolver<Maybe<Array<ResolversTypes['Account']>>, ParentType, ContextType>;
+  getCategories?: Resolver<Maybe<Array<ResolversTypes['Category']>>, ParentType, ContextType>;
+  getTransaction?: Resolver<Maybe<ResolversTypes['Transaction']>, ParentType, ContextType>;
+  getTransactions?: Resolver<Maybe<Array<ResolversTypes['Transaction']>>, ParentType, ContextType>;
 };
 
 export type TransactionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Transaction'] = ResolversParentTypes['Transaction']> = {

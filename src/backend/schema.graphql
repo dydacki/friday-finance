@@ -1,6 +1,8 @@
 type Query {
-  getAccount(accountId: String!): Account!
   getAccounts: [Account!]
+  getCategories: [Category!]
+  getTransactions: [Transaction!]
+  getTransaction: Transaction
 }
 
 type Mutation {
