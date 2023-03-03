@@ -1,42 +1,39 @@
-
-
-type Account {
-  id: ID
-  name: String
-  bank: String
-}
-
-type Category {
-  id: ID
-  name: String
-  color: String
-}
-
-type Transaction {
-  id: ID
-  accountId: ID
-  categoryId: ID
-  reference: String
-  amount: Float;
-  currency: String
-  date: Date;
-}
-
-type TransactionRequest {
-  accountId: ID
-  categoryId: ID
-  reference: String
-  amount: Float;
-  currency: String
-  date: Date;
-}
-
 type Query {
-  getAccount(accountId: String): Account
-  getAccounts(): Transaction
+  getAccount(accountId: String!): Account!
+  getAccounts: [Account!]
 }
 
 type Mutation {
-  createTransaction(transactionRequest: TransactionRequest): Transaction
-  updateTransaction(transaction: Transaction): Transaction
+  createTransaction(transaction: TransactionRequest!): Transaction!
+  updateTransaction(transaction: Transaction!): Transaction!
+}
+
+type Account {
+  id: ID!
+  name: String!
+  bank: String!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  color: String!
+}
+
+type Transaction {
+  id: ID!
+  accountId: ID!
+  categoryId: ID!
+  reference: String
+  amount: Float!
+  currency: String!
+  date: String!
+}
+
+type TransactionRequest {
+  accountId: ID!
+  categoryId: ID!
+  reference: String
+  amount: Float!
+  currency: String!
 }
