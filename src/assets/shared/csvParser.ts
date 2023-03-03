@@ -5,6 +5,7 @@ export function parseFromFile<T>(filePath: string, headers: ColumnOption[]): Arr
   const parseOptions: Options = {
     delimiter: ',',
     columns: headers,
+    fromLine: 2,
     encoding: 'utf-8'
   };
 
