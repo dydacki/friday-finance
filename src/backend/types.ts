@@ -52,6 +52,11 @@ export type Query = {
   getTransactions?: Maybe<Array<Transaction>>;
 };
 
+
+export type QueryGetTransactionArgs = {
+  id: Scalars['ID'];
+};
+
 export type Transaction = {
   __typename?: 'Transaction';
   accountId: Scalars['ID'];
@@ -200,7 +205,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getAccounts?: Resolver<Maybe<Array<ResolversTypes['Account']>>, ParentType, ContextType>;
   getCategories?: Resolver<Maybe<Array<ResolversTypes['Category']>>, ParentType, ContextType>;
-  getTransaction?: Resolver<Maybe<ResolversTypes['Transaction']>, ParentType, ContextType>;
+  getTransaction?: Resolver<Maybe<ResolversTypes['Transaction']>, ParentType, ContextType, RequireFields<QueryGetTransactionArgs, 'id'>>;
   getTransactions?: Resolver<Maybe<Array<ResolversTypes['Transaction']>>, ParentType, ContextType>;
 };
 

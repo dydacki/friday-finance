@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import path from 'path';
+import path, { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
@@ -29,7 +29,7 @@ const resolvers: Resolvers = {
     getAccounts: () => accounts,
     getCategories: () => categories,
     getTransactions: () => transactions,
-    getTransaction: (_, id) => transactions.find(t => t.id === id)
+    getTransaction: (_, { id }) =>  transactions.find(t => t.id === id)
   },
 };
 

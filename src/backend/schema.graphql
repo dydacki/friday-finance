@@ -2,7 +2,7 @@ type Query {
   getAccounts: [Account!]
   getCategories: [Category!]
   getTransactions: [Transaction!]
-  getTransaction: Transaction
+  getTransaction(id: ID!): Transaction
 }
 
 type Mutation {
