@@ -1,7 +1,7 @@
 type Query {
   getAccounts: [Account!]
   getCategories: [Category!]
-  getTransactions: [Transaction!]
+  getTransactions(pageNo: Int!): [Transaction!]
   getTransaction(id: ID!): Transaction
 }
 
