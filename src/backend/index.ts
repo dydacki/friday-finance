@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs';
-import path, { resolve } from 'path';
+import path from 'path';
 import { fileURLToPath } from 'url';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { Account, Category, Resolvers, Transaction } from './types'
+import { Account, Category, Resolvers, Transaction, TransactionUpdateRequest } from './types'
 import { parseFromFile } from '../assets/shared/csvParser.js';
 
 const dirName = (): string => {
@@ -19,6 +19,18 @@ const createGraphPath = (): string => {
   return path.join(dirName(), 'schema.graphql');
 }
 
+const mockTransactionUpdate = (request: TransactionUpdateRequest): Transaction => {
+  console.log('Transaction to be updated: ', JSON.stringify(request));
+  return {
+    accountId: request.accountId,
+    amount: request.amount,
+    categoryId: request.categoryId,
+    currency: request.currency,
+    date: request.date,
+    id: request.id
+  };
+}
+
 const accounts: Account[] = parseFromFile<Account>(createSeedPath('accounts.csv'), ['id', 'name', 'bank']);
 const categories: Category[] = parseFromFile<Category>(createSeedPath('categories.csv'), ['id', 'name', 'color']);
 const transactions: Transaction[] = parseFromFile<Transaction>(createSeedPath('transactions.csv'), ['id', 'accountId', 'categoryId', 'reference', 'amount', 'currency', 'date']);
@@ -30,6 +42,10 @@ const resolvers: Resolvers = {
     getCategories: () => categories,
     getTransactions: () => transactions,
     getTransaction: (_, { id }) =>  transactions.find(t => t.id === id)
+  },
+
+  Mutation: {
+    updateTransaction: (_, { transaction }) => mockTransactionUpdate(transaction)
   },
 };
 
