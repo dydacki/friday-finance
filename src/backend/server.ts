@@ -66,7 +66,7 @@ const fetchTransactionBatch = (pageNo: number, pageSize: number): TransactionPag
 
   return {
     fromTransaction: startIndex + 1,
-    toTransaction: startIndex + transactionBatch.length + 1,
+    toTransaction: startIndex + transactionBatch.length,
     totalTransactions: transactions.length,
     transactions: transactionBatch
   };

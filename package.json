@@ -7,7 +7,7 @@
   "scripts": {
     "compile": "tsc",
     "generate": "graphql-codegen --config ./src/backend/codegen.yml",
-    "start": "tsc && ts-node --esm src/backend/index.ts"
+    "start": "tsc && ts-node --esm src/backend/server.ts"
   },
   "keywords": [],
   "author": "",
