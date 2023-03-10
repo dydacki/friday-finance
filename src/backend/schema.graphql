@@ -1,7 +1,7 @@
 type Query {
   getAccounts: [Account!]
   getCategories: [Category!]
-  getTransactions(pageNo: Int!): [Transaction!]
+  getTransactions(pageNo: Int!): TransactionPage!
   getTransaction(id: ID!): Transaction
 }
 
@@ -16,20 +16,37 @@ type Account {
   bank: String!
 }
 
+type AccountBrief {
+  id: ID!
+  name: String!
+}
+
 type Category {
   id: ID!
   name: String!
   color: String!
 }
 
+type CategoryBrief {
+  id: ID!
+  name: String!
+}
+
 type Transaction {
   id: ID!
-  accountId: ID!
-  categoryId: ID!
+  account: AccountBrief
+  category: CategoryBrief
   reference: String
   amount: Float!
   currency: String!
   date: String!
+}
+
+type TransactionPage {
+  transactions: [Transaction!]
+  totalTransactions: Int!
+  fromTransaction: Int!
+  toTransaction: Int!
 }
 
 input TransactionCreateRequest {
