@@ -72,12 +72,16 @@ const fetchTransactionBatch = (pageNo: number, pageSize: number): TransactionPag
   };
 }
 
+const fetchTransaction = (id: string): Transaction | null => {
+  return transactions.find(t => t.id === id) ?? null;
+}
+
 const resolvers: Resolvers = {
   Query: {
     getAccounts: () => accounts,
     getCategories: () => categories,
     getTransactions: (_, { pageNo }) => fetchTransactionBatch(pageNo, 15),
-    getTransaction: (_, { id }) =>  transactions.find(t => t.id === id)
+    getTransaction: (_, { id }) => fetchTransaction(id)
   },
 
   Mutation: {
@@ -96,7 +100,8 @@ var serverOptions = {
   resolvers: resolvers,
 };
 
-// @ts-ignore - bug in TS, code working anyways.
+// @ts-ignore
 const server = new ApolloServer(serverOptions);
-const { url } = await startStandaloneServer(server, listenOptions);
-console.log(`Server up and running at: ${url}`);
+// @ts-ignore
+const serverInstance = await startStandaloneServer(server, listenOptions);
+console.log(`Server up and running at: ${serverInstance.url}`);
