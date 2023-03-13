@@ -7,6 +7,7 @@
   "scripts": {
     "compile": "tsc",
     "generate": "graphql-codegen --config ./src/backend/codegen.yml",
+    "generatedb": "npx prisma migrate dev --name init --schema ./src/database/prisma/schema.prisma && ts-node-esm src/database/populatedb.ts",
     "start": "tsc && ts-node --esm src/backend/server.ts"
   },
   "keywords": [],
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.4.0",
+    "@prisma/client": "^4.11.0",
     "csv-parse": "5.3.5",
     "graphql": "^16.6.0"
   }
