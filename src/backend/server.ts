@@ -99,4 +99,4 @@ var serverOptions = {
 // @ts-ignore - bug in TS, code working anyways.
 const server = new ApolloServer(serverOptions);
 const { url } = await startStandaloneServer(server, listenOptions);
-console.log(`🚀  Server up and running at: ${url}`);
+console.log(`Server up and running at: ${url}`);
